@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function Search() {
   let [message, setMessage] = useState("");
-  let [city, setCity] = useState("Kyiv");
+  let [city, setCity] = useState("");
   let [temperature, setTemperature] = useState("");
   let [description, setDescription] = useState("");
   let [humidity, setHumidity] = useState("");
@@ -83,6 +83,34 @@ export default function Search() {
         <li>Kyiv</li>
       </ul>
       {message}
+      <div class="container text-center mt-4">
+        <div class="row">
+          <div class="col-2">
+            <p>Tue</p>
+            <p>23°C</p>
+          </div>
+          <div class="col-2">
+            <p>Wed</p>
+            <p>23°C</p>
+          </div>
+          <div class="col-2">
+            <p>Tue</p>
+            <p>23°C</p>
+          </div>
+          <div class="col-2">
+            <p>Fri</p>
+            <p>23°C</p>
+          </div>
+          <div class="col-2">
+            <p>Sat</p>
+            <p>23°C</p>
+          </div>
+          <div class="col-2">
+            <p>Sun</p>
+            <p>23°C</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
