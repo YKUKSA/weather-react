@@ -60,6 +60,7 @@ export default function Search() {
           placeholder="Enter a city"
           onChange={changeCity}
           id="label"
+          autoFocus="on"
         />{" "}
         <input
           type="submit"
