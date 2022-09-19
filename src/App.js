@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       {" "}
-      <Search />
+      <Search cityDefault="Kyiv" />
       <Footer />
     </div>
   );
