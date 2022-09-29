@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ActualTime from "./ActualTime";
+import WeatherInfo from "./WeatherInfo";
 
 export default function Search(props) {
   const [weather, setWeather] = useState({ ready: false });
@@ -47,39 +47,11 @@ export default function Search(props) {
           <li>Berlin</li>
           <li>Kyiv</li>
         </ul>
-        <div className="container text-center">
-          <div className="row">
-            <div className="col-3">
-              <h1>{props.cityDefault}</h1>
-              <ActualTime date={weather.date} />
-            </div>{" "}
-            <div className="col-3">
-              <ul>
-                <li>
-                  <span className="temperature">
-                    {Math.round(weather.temperature)}
-                  </span>{" "}
-                  <span className="unit-celsius">°C</span>
-                </li>
-              </ul>
-            </div>
-            <div className="col-3">
-              <ul>
-                <li>{weather.description}</li>
-                <li>Humidity: {weather.humidity} %</li>
-                <li>Wind: {weather.wind} m/s</li>
-              </ul>
-            </div>
-            <div className="col-3">
-              <img src={weather.iconUrl} alt={weather.description} />
-            </div>
-          </div>
-        </div>{" "}
+        <WeatherInfo data={weather} />{" "}
       </div>
     );
   } else {
     const apiKey = "c3a56d4fcded4e52316bb9963de765f8";
-    let city = "Kyiv";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.cityDefault}&appid=${apiKey}&units=metric`;
     axios.get(url).then(displayConditions);
     return "Loading...";
