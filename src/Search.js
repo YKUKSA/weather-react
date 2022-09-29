@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 
-export default function Search(props) {
+export default function Search() {
   const [weather, setWeather] = useState({ ready: false });
+  const [city, setCity] = useState("Kyiv");
   function displayConditions(response) {
     setWeather({
       ready: true,
@@ -12,14 +13,26 @@ export default function Search(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       date: new Date(response.data.dt * 1000),
+      city: response.data.name,
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
   }
-
+  function search() {
+    const apiKey = "c3a56d4fcded4e52316bb9963de765f8";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(url).then(displayConditions);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+  function handleCitySearch(event) {
+    setCity(event.target.value);
+  }
   if (weather.ready) {
     return (
       <div className="search-form">
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Enter a city"
@@ -31,6 +44,7 @@ export default function Search(props) {
             value="Search"
             className="btn btn-secondary"
             id="form-submit"
+            onChange={handleCitySearch}
           />
           <input
             type="submit"
@@ -51,9 +65,6 @@ export default function Search(props) {
       </div>
     );
   } else {
-    const apiKey = "c3a56d4fcded4e52316bb9963de765f8";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.cityDefault}&appid=${apiKey}&units=metric`;
-    axios.get(url).then(displayConditions);
     return "Loading...";
   }
 }
