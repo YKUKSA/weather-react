@@ -1,5 +1,6 @@
 import React from "react";
 import ActualTime from "./ActualTime";
+import ShowTemperature from "./ShowTemperature";
 export default function WeatherInfo(props) {
   return (
     <div className="container text-center">
@@ -10,11 +11,8 @@ export default function WeatherInfo(props) {
         </div>{" "}
         <div className="col-3">
           <ul>
-            <li>
-              <span className="temperature">
-                {Math.round(props.data.temperature)}
-              </span>{" "}
-              <span className="unit-celsius">°C</span>
+            <li className="text-center">
+              <ShowTemperature celsius={props.data.temperature} />
             </li>
           </ul>
         </div>
