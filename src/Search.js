@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 
-export default function Search() {
+export default function Search(props) {
   const [weather, setWeather] = useState({ ready: false });
-  const [city, setCity] = useState("Kyiv");
+  const [city, setCity] = useState(props.cityDefault);
   function displayConditions(response) {
     setWeather({
       ready: true,
@@ -13,7 +13,7 @@ export default function Search() {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       date: new Date(response.data.dt * 1000),
-      city: response.data.name,
+      cities: response.data.name,
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
   }
@@ -38,13 +38,13 @@ export default function Search() {
             placeholder="Enter a city"
             id="label"
             autoFocus="on"
+            onChange={handleCitySearch}
           />{" "}
           <input
             type="submit"
             value="Search"
             className="btn btn-secondary"
             id="form-submit"
-            onChange={handleCitySearch}
           />
           <input
             type="submit"
@@ -65,6 +65,7 @@ export default function Search() {
       </div>
     );
   } else {
+    search();
     return "Loading...";
   }
 }

@@ -5,7 +5,7 @@ export default function WeatherInfo(props) {
     <div className="container text-center">
       <div className="row">
         <div className="col-3">
-          <h1>{props.data.city}</h1>
+          <h1>{props.data.cities}</h1>
           <ActualTime date={props.data.date} />
         </div>{" "}
         <div className="col-3">
