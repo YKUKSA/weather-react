@@ -14,6 +14,8 @@ export default function Search(props) {
       wind: response.data.wind.speed,
       date: new Date(response.data.dt * 1000),
       cities: response.data.name,
+      lat: response.data.coord.lat,
+      lon: response.data.coord.lon,
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
   }
@@ -29,6 +31,7 @@ export default function Search(props) {
   function handleCitySearch(event) {
     setCity(event.target.value);
   }
+
   if (weather.ready) {
     return (
       <div className="search-form">
@@ -45,12 +48,6 @@ export default function Search(props) {
             value="Search"
             className="btn btn-secondary"
             id="form-submit"
-          />
-          <input
-            type="submit"
-            value="Current"
-            className="btn btn-secondary"
-            id="form-current"
           />
         </form>
         <ul className="cities-list">
