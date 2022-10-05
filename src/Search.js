@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Search(props) {
   const [weather, setWeather] = useState({ ready: false });
@@ -14,8 +15,7 @@ export default function Search(props) {
       wind: response.data.wind.speed,
       date: new Date(response.data.dt * 1000),
       cities: response.data.name,
-      lat: response.data.coord.lat,
-      lon: response.data.coord.lon,
+      coordinates: response.data.coord,
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
   }
@@ -58,7 +58,8 @@ export default function Search(props) {
           <li>Berlin</li>
           <li>Kyiv</li>
         </ul>
-        <WeatherInfo data={weather} />{" "}
+        <WeatherInfo data={weather} />
+        <WeatherForecast coordinates={weather.coordinates} />
       </div>
     );
   } else {
