@@ -29,6 +29,9 @@ p {
   width: 100px;
   margin-right: 5px;
 }
+.search-form {
+  margin-bottom: 25px;
+}
 .cities-list {
   display: inline-flex;
 }
