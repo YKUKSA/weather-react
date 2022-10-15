@@ -1,6 +1,7 @@
 import React from "react";
 import ActualTime from "./ActualTime";
 import ShowTemperature from "./ShowTemperature";
+import WeatherIcon from "./WeatherIcon";
 export default function WeatherInfo(props) {
   return (
     <div className="container text-center">
@@ -24,7 +25,7 @@ export default function WeatherInfo(props) {
           </ul>
         </div>
         <div className="col-3">
-          <img src={props.data.iconUrl} alt={props.data.description} />
+          <WeatherIcon code={props.data.icon} alt={props.data.description} />
         </div>
       </div>
     </div>
