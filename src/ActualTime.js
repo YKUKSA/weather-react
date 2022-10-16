@@ -15,7 +15,7 @@ export default function ActualTime(props) {
   let minutes = props.date.getMinutes();
   return (
     <div>
-      <p>
+      <p className="text-center">
         {day} {hour}:{minutes}
       </p>
     </div>

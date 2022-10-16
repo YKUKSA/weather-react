@@ -50,14 +50,7 @@ export default function Search(props) {
             id="form-submit"
           />
         </form>
-        <ul className="cities-list">
-          <li>Lisbon</li>
-          <li>Paris</li>
-          <li>London</li>
-          <li>New York</li>
-          <li>Berlin</li>
-          <li>Kyiv</li>
-        </ul>
+
         <WeatherInfo data={weather} />
         <WeatherForecast coordinates={weather.coordinates} />
       </div>
